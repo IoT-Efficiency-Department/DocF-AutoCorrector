@@ -45,14 +45,6 @@ for i in range(j):
         块.font.size = Pt(9)  # 页眉小五
         块.font.name = 'Times New Roman'
         块._element.rPr.rFonts.set(qn('w:eastAsia'), '宋体')
-    #
-    # # 设置中文字体为宋体
-    # 页眉段落._element.rPr.rFonts.set(qn('w:eastAsia'), '宋体')
-    #
-    # # 设置西文字体为 Times New Roman
-    # 页眉段落._element.rPr.rFonts.set(qn('w:ascii'), 'Times New Roman')
-    # 页眉段落._element.rPr.rFonts.set(qn('w:cs'), 'Times New Roman')
-    # 页眉段落._element.rPr.rFonts.set(qn('w:hAnsi'), 'Times New Roman')
 
     页眉段落.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER #设置页眉段落为居中
 
@@ -101,15 +93,6 @@ for i in range(j):
         块.font.size = Pt(9)  # 页脚小五
         块.font.name = 'Times New Roman'
         块._element.rPr.rFonts.set(qn('w:eastAsia'), '宋体')
-
-    # 页脚段落.font.size = Pt(5) # 页脚小五
-    # # 设置中文字体为宋体
-    # 页脚段落._element.rPr.rFonts.set(qn('w:eastAsia'), '宋体')
-    #
-    # # 设置西文字体为 Times New Roman
-    # 页脚段落._element.rPr.rFonts.set(qn('w:ascii'), 'Times New Roman')
-    # 页脚段落._element.rPr.rFonts.set(qn('w:cs'), 'Times New Roman')
-    # 页脚段落._element.rPr.rFonts.set(qn('w:hAnsi'), 'Times New Roman')
 
     页脚段落.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
 
