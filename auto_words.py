@@ -8,12 +8,56 @@ from docx.enum.text import WD_PARAGRAPH_ALIGNMENT,WD_TAB_ALIGNMENT,WD_TAB_LEADER
 
 文件 = Document('./testin.docx')
 
-封面 = 0
-摘要是第几页 = 0
+封面页数 = 0
+摘要页数 = 1
+目录页数 = 0
 
 j = int(len(文件.sections))
 for i in range(j):
     节 = 文件.sections[i]
+
+
+
+    # 假设封面是第一节，设置第一页无页码
+    if 封面页数 > 0 :
+        if i == 0 :
+            for paragraph in 页脚.paragraphs:
+                paragraph.clear()  # 清空封面页脚内容
+            for paragraph in 页眉.paragraphs:
+                paragraph.clear()  # 清空封面页眉内容
+    if 摘要页数 > 0:
+        if i == 封面页数:
+            for paragraph in 页脚.paragraphs:
+                paragraph.clear()  # 清空封面页脚内容
+    if 目录页数 > 0:
+        if i == 封面页数 + 摘要页数 :
+            for n in 目录页数:
+                for paragraph in 页脚.paragraphs:
+                    paragraph.clear()  # 清空目录页脚内容
+                    paragraph.text = str(n + 1)  # 设置目录页脚内容页码
+                for paragraph in 页眉.paragraphs:
+                    paragraph.clear()  # 清空目录页眉内容
+
+
+
+    # 设置摘要页码格式
+    if 摘要是第几页 == 1:
+        摘要是第几页 -= 1
+        摘要节 = 文件.sections[摘要是第几页]  # 假设摘要是第二节
+        摘要页脚 = 摘要节.footer
+        摘要页码段落 = 摘要页脚.add_paragraph()
+        摘要页码段落.text = str(摘要页码)  # 添加摘要页码文本
+
+
+
+    # 设置正文部分的页码格式
+    正文节 = 文件.sections[摘要是第几页 + 1]  # 假设正文是第三节
+    正文页脚 = 正文节.footer
+    正文页码段落 = 正文页脚.add_paragraph()
+    正文页码段落.text = "正文页码"  # 添加正文页码文本
+
+
+
 
 
 
@@ -50,33 +94,33 @@ for i in range(j):
 
     页脚 = 节.footer
 
-    # 假设封面是第一节，设置第一页无页码
-    if 封面 == 1:
-        if 节 == 文件.sections[0]:
-            for paragraph in 页脚.paragraphs:
-                paragraph.clear()  # 清空封面页脚内容
-                摘要页码 = 2
-        else:
-            for paragraph in 页脚.paragraphs:
-                paragraph.text = "1"  # 设置其他页脚内容页码
-    else:
-        摘要页码 = 1
-
-    # 设置摘要页码格式
-    if 摘要是第几页 == 1:
-        摘要是第几页 -= 1
-        摘要节 = 文件.sections[摘要是第几页]  # 假设摘要是第二节
-        摘要页脚 = 摘要节.footer
-        摘要页码段落 = 摘要页脚.add_paragraph()
-        摘要页码段落.text = str(摘要页码)  # 添加摘要页码文本
-
-
-
-    # 设置正文部分的页码格式
-    正文节 = 文件.sections[摘要是第几页 + 1]  # 假设正文是第三节
-    正文页脚 = 正文节.footer
-    正文页码段落 = 正文页脚.add_paragraph()
-    正文页码段落.text = "正文页码"  # 添加正文页码文本
+    # # 假设封面是第一节，设置第一页无页码
+    # if 封面 == 1:
+    #     if 节 == 文件.sections[0]:
+    #         for paragraph in 页脚.paragraphs:
+    #             paragraph.clear()  # 清空封面页脚内容
+    #             摘要页码 = 2
+    #     else:
+    #         for paragraph in 页脚.paragraphs:
+    #             paragraph.text = "1"  # 设置其他页脚内容页码
+    # else:
+    #     摘要页码 = 1
+    #
+    # # 设置摘要页码格式
+    # if 摘要是第几页 == 1:
+    #     摘要是第几页 -= 1
+    #     摘要节 = 文件.sections[摘要是第几页]  # 假设摘要是第二节
+    #     摘要页脚 = 摘要节.footer
+    #     摘要页码段落 = 摘要页脚.add_paragraph()
+    #     摘要页码段落.text = str(摘要页码)  # 添加摘要页码文本
+    #
+    #
+    #
+    # # 设置正文部分的页码格式
+    # 正文节 = 文件.sections[摘要是第几页 + 1]  # 假设正文是第三节
+    # 正文页脚 = 正文节.footer
+    # 正文页码段落 = 正文页脚.add_paragraph()
+    # 正文页码段落.text = "正文页码"  # 添加正文页码文本
 
 
 
