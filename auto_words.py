@@ -17,26 +17,41 @@ for i in range(j):
     节 = 文件.sections[i]
 
 
-
+#确定封面节设定正确
     # 假设封面是第一节，设置第一页无页码
     if 封面页数 > 0 :
         if i == 0 :
-            for paragraph in 页脚.paragraphs:
+            封面页 = 文件.sections[i]
+            封面页脚 = 封面页.footer
+            封面页眉 = 封面页.header
+            # 封面页脚段落 = 封面页脚.add_paragraph()
+            for paragraph in 封面页脚.paragraphs:
                 paragraph.clear()  # 清空封面页脚内容
-            for paragraph in 页眉.paragraphs:
+            for paragraph in 封面页眉.paragraphs:
                 paragraph.clear()  # 清空封面页眉内容
     if 摘要页数 > 0:
         if i == 封面页数:
-            for paragraph in 页脚.paragraphs:
+            摘要页 = 文件.sections[i]
+            摘要页脚 = 摘要页.footer
+            摘要页眉 = 摘要页.header
+            for paragraph in 摘要页脚.paragraphs:
                 paragraph.clear()  # 清空封面页脚内容
+            for paragraph in 摘要页眉.paragraphs:
+                paragraph.clear()  # 清空封面页眉内容
     if 目录页数 > 0:
         if i == 封面页数 + 摘要页数 :
+
             for n in 目录页数:
-                for paragraph in 页脚.paragraphs:
+                目录页 = 文件.sections[i+n]
+                目录页脚 = 目录页.footer
+                目录页眉 = 目录页.header
+
+                for paragraph in 目录页脚.paragraphs:
                     paragraph.clear()  # 清空目录页脚内容
-                    paragraph.text = str(n + 1)  # 设置目录页脚内容页码
-                for paragraph in 页眉.paragraphs:
+                    paragraph.text = str(i + n + 1)  # 设置目录页脚内容页码
+                for paragraph in 目录页眉.paragraphs:
                     paragraph.clear()  # 清空目录页眉内容
+
 
 
 
