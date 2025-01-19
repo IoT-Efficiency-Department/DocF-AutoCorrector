@@ -49,14 +49,6 @@ def add_page_number(run):
     run._r.append(fldChar2)
 
 
-doc = Document()
-for i in range(50):
-    paragraph1 = doc.add_paragraph("这里是文字")
-
-add_page_number(doc.sections[0].footer.paragraphs[0].add_run())
-doc.sections[0].footer.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
-
-
 
 j = int(len(文件.sections))
 print(j)
@@ -153,9 +145,18 @@ for i in range(j):
     页脚段落.clear()  # 清空现有内容
 
 
-add_page_number(doc.sections[0].footer.paragraphs[0].add_run())
-doc.sections[0].footer.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+# add_page_number(文件.sections[0].footer.paragraphs[0].add_run())
+# 文件.sections[0].footer.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
 
+# 遍历每一节并添加页码
+start_section_index = 1  # 从第2节开始添加页码（索引从0开始）
+for i, section in enumerate(文件.sections):
+    if i >= start_section_index:
+        页脚 = section.footer
+        页脚段落 = 页脚.paragraphs[0] if 页脚.paragraphs else 页脚.add_paragraph()
+        页脚段落.clear()  # 清空现有内容
+        add_page_number(页脚段落.add_run())
+        页脚段落.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
 
 # 全文修改
