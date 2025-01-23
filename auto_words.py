@@ -20,7 +20,6 @@ page = 1
 
 
 
-
 def create_element(name):
     return OxmlElement(name)
 
@@ -31,6 +30,7 @@ def create_attribute(element, name, value):
 
 def add_page_number(run):
     # 创建页码开始字段
+    # 页码开始
     fldChar1 = create_element('w:fldChar')
     create_attribute(fldChar1, 'w:fldCharType', 'begin')
 
