@@ -18,16 +18,10 @@ from docx.oxml import OxmlElement
 
 page = 1
 
-
-
 def create_element(name):
     return OxmlElement(name)
-
-
 def create_attribute(element, name, value):
     element.set(qn(name), value)
-
-
 def add_page_number(run):
     # 创建页码开始字段
     # 页码开始
@@ -95,7 +89,7 @@ for i in range(j):
     if 节.page_width == Cm(21) & 节.page_height == Cm(29.7): #页面高度
         print("页面正确！");
     else:
-        print("页面错误！")
+        # print("页面错误！")
         节.page_width = Cm(21)  # 页面宽度
         节.page_height = Cm(29.7)  # 页面高度
 
@@ -132,17 +126,17 @@ for i in range(j):
         for _ in range(页脚段落数量 - 1):
             页脚.paragraphs[-1]._element.getparent().remove(页脚.paragraphs[-1]._element)
 
-
-    页脚段落 = 页脚.paragraphs[0]
-    for 块 in 页脚段落.runs:
-        块.font.size = Pt(9)  # 页脚小五
-        块.font.name = 'Times New Roman'
-        块._element.rPr.rFonts.set(qn('w:eastAsia'), '宋体')
-
-    页脚段落.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-    页脚 = 节.footer
-    paragraph = 页脚.paragraphs[0]  # 获取页脚的第一个段落
-    页脚段落.clear()  # 清空现有内容
+    #
+    # 页脚段落 = 页脚.paragraphs[0]
+    # for 块 in 页脚段落.runs:
+    #     块.font.size = Pt(9)  # 页脚小五
+    #     块.font.name = 'Times New Roman'
+    #     块._element.rPr.rFonts.set(qn('w:eastAsia'), '宋体')
+    #
+    # 页脚段落.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+    # 页脚 = 节.footer
+    # paragraph = 页脚.paragraphs[0]  # 获取页脚的第一个段落
+    # 页脚段落.clear()  # 清空现有内容
 
 
 # add_page_number(文件.sections[0].footer.paragraphs[0].add_run())
